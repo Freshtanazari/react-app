@@ -19,7 +19,7 @@ function App() {
         and is {" "}
         <a href="https://github.com/Freshtanazari/react-app" target = "_blank" rel="noreferrer">opend sourced on GitHub</a> 
         {" "} and {" "}
-        <a href="#" target="_blank" rel='noreferrer'>hosted on Netlify</a> 
+        <a href="https://sunny-nougat-6aace7.netlify.app/" target="_blank" rel='noreferrer'>hosted on Netlify</a> 
       </footer>
       </div>
     </div>
