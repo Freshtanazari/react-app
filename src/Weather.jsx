@@ -1,23 +1,60 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import Search from "./Search.jsx";
+import axios from "axios";
 
 export default function Weather(){
-    let [ready, setReady] = useState(false);
-    weatherDataDefault ={
-          icon: "loading",
-            temp: "Loading...",
-            description: "Loading...",
-            wind: "Loading...",
-            humidity: "Loading...",
-            day: "Loading...",
-            hour: "Loading...",
-            minutes: "Loading...",
-    };
-    let [weatherData, setWeatherData] = useState(weatherDataDefault);
-    function handleWeatherData(data){
-        setWeatherData(data);
-        setReady(true);
+    useEffect(() => {
+        console.log("useeffect is triggered");
+    fetchData("Paris");
+    }, []);
+    const [weatherData, setWeatherData] = useState({
+        icon: "loading",
+        temp: "--",
+        description: "Loading...",
+        wind: "--",
+        humidity: "--",
+        day: "--",
+        hour: "--",
+        minutes: "--"
+    });
+  
+    function fetchData(city){
+        let apiKey = "9cb72bec958f8fb02391985ed7b219d2";
+        let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
+        console.log("calling api");
+        axios.get(url).then(handleResponse).catch(err => console.error("API call failed:", err));;
     }
+    function handleResponse(response){
+        const daysOfWeek = [
+                "Sunday",
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday"
+            ];
+
+        let utcSeconds = response.data.dt;
+        let timezoneOffset = response.data.timezone;
+        let citySeconds = (utcSeconds + timezoneOffset) *1000;
+        let cityDate = new Date(citySeconds);
+
+        // set the data in an object
+        const weatherData = {
+            icon:response.data.weather[0].icon,
+            temp: response.data.main.temp,
+            description: response.data.weather[0].description,
+            wind: response.data.wind.speed,
+            humidity: response.data.main.humidity,
+            day: daysOfWeek[cityDate.getUTCDay()],
+            hour: cityDate.getUTCHours(),
+            minutes: cityDate.getUTCMinutes()
+        };
+        setWeatherData(weatherData);
+    }
+
+
     return(
         <div className = "Weather mt-5">
             
@@ -42,7 +79,7 @@ export default function Weather(){
                     </ul>
                 </div>
                  {/* send the function as a prop to child component */}
-                <Search onWeatherData = {handleWeatherData} />
+                <Search onSearch={fetchData} />
             </div>
         </div>
     )
