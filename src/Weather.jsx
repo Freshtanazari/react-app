@@ -1,6 +1,23 @@
-import React from "react";
+import React, {useState} from "react";
+import Search from "./Search.jsx";
 
 export default function Weather(){
+    let [ready, setReady] = useState(false);
+    weatherDataDefault ={
+          icon: "loading",
+            temp: "Loading...",
+            description: "Loading...",
+            wind: "Loading...",
+            humidity: "Loading...",
+            day: "Loading...",
+            hour: "Loading...",
+            minutes: "Loading...",
+    };
+    let [weatherData, setWeatherData] = useState(weatherDataDefault);
+    function handleWeatherData(data){
+        setWeatherData(data);
+        setReady(true);
+    }
     return(
         <div className = "Weather mt-5">
             
@@ -18,21 +35,15 @@ export default function Weather(){
 
                 <div className="col-6">
                     <ul className="mt-5">
-                        <li>sunday : 12:56</li>
-                        <li>broken clouds</li>
-                        <li>humidity: 83%</li>
-                        <li> wind: 5.km/h</li>
+                        <li>{weatherData.day} : {weatherData.hour}: {weatherData.minutes}</li>
+                        <li>{weatherData.description}</li>
+                        <li>humidity: {weatherData.humidity}%</li>
+                        <li> wind: {weatherData.wind}km/h</li>
                     </ul>
                 </div>
-                <form>
-                        <div className ="row">
-                        <input type="search" placeholder="Enter a city..." className = "col-9"/>
-                        <input type="Submit" value="Search" className = "btn btn-primary col-3"/>
-                        </div>
-                </form>
-
+                 {/* send the function as a prop to child component */}
+                <Search onWeatherData = {handleWeatherData} />
             </div>
-
         </div>
     )
 }
