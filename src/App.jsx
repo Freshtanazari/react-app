@@ -8,8 +8,7 @@ function App() {
   return (
 
     <div className="App">
-      <div className="container">
-
+      <div className="container col-6">
       <Weather />
       <footer>This project was coded by {" "}
         <a href="https://github.com/Freshtanazari/react-app" target="_blank" rel="noreferrer">

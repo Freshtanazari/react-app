@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-
+import "./Search.css";
 
 export default function Search({onSearch}){
     let [city, setCity ] = useState(null);
