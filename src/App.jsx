@@ -1,15 +1,16 @@
 import { useState } from 'react'
-
-
 import './App.css'
 import Weather from './Weather';
 
 function App() {
+  
   return (
 
     <div className="App">
-      <div className="container col-6">
-      <Weather />
+      <div className="container border rounded col-8 ">
+      
+      <Weather/>
+
       <footer>This project was coded by {" "}
         <a href="https://github.com/Freshtanazari/react-app" target="_blank" rel="noreferrer">
           Freshta Nazari
