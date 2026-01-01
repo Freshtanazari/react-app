@@ -2,6 +2,8 @@ import React, {useState, useEffect} from "react";
 import Search from "./Search.jsx";
 import axios from "axios";
 import WeatherInfo from "./WeatherInfo.jsx";
+import WeatherBackground from './WeatherBackground.jsx'
+import './weather.css';
 
 export default function Weather(){
 
@@ -51,10 +53,15 @@ export default function Weather(){
         }
     
     return(
-        <div className = "Weather mt-5">
+        <div className= "appContainer">
+        
+
+        <div className = "weather mt-5">
                 {/* send the function as a prop to child component */}
                 <Search onSearch={fetchData} />
                 <WeatherInfo data={weatherData}/>
+        </div>
+        <WeatherBackground code={weatherData?.icon}/>
         </div>
     )
 }

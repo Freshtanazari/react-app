@@ -1,8 +1,18 @@
 import ReactAnimatedWeather from 'react-animated-weather';
 import React from 'react'
+import Lottie  from 'lottie-react';
+import CLEAR_DAY from "./assets/animations/CLEAR_DAY.json"
+import CLEAR_NIGHT from "./assets/animations/CLEAR_NIGHT.json"
+import PARTLY_CLOUDY_DAY from "./assets/animations/PARTLY_CLOUDY_DAY.json"
+import PARTLY_CLOUDY_NIGHT from "./assets/animations/PARTLY_CLOUDY_NIGHT.json"
+import CLOUDY from "./assets/animations/CLOUDY.json"
+import RAIN from "./assets/animations/RAIN.json"
+import SNOW from "./assets/animations/SNOW.json"
+import FOG from "./assets/animations/FOG.json"
 
 function WeatherIcon(props){
   console.log(props.code)
+
   const iconMapping = {
     "01d":"CLEAR_DAY", 
     "01n":"CLEAR_NIGHT",
@@ -23,13 +33,17 @@ function WeatherIcon(props){
     "50d":"FOG",
     "50n":"FOG"
   }
+  
   return (
+    <>
   <ReactAnimatedWeather
     icon={iconMapping[props.code]}
     color="BLACK"
     size={64}
     animate={true}
   />
+  </>
+
   )
 }
 

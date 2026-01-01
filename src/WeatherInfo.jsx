@@ -9,10 +9,10 @@ const WeatherInfo = ({ data }) => {
 
   return (
     <div className="container">
-      {/* City name */}
+      {/* City name */} 
       <div className="row">
         <div className="col-12">
-          <p className="fs-1 fw-bold m-0">{data.city}</p>
+          <p className="fs-1 fw-bold m-2">{data.city}</p>
         </div>
       </div>
 
