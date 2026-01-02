@@ -19,7 +19,7 @@ const WeatherInfo = ({ data }) => {
       {/* Weather main row */}
       <div className="row align-items-center mt-2">
         <div className="col-4 d-flex justify-content-center">
-          <WeatherIcon code={data.icon} alt={data.description} />
+          <WeatherIcon code={data.icon} size = {60} alt={data.description} />
         </div>
 
         <div className="col-4 d-flex justify-content-center">

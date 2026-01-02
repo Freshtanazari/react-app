@@ -3,6 +3,7 @@ import Search from "./Search.jsx";
 import axios from "axios";
 import WeatherInfo from "./WeatherInfo.jsx";
 import WeatherBackground from './WeatherBackground.jsx'
+import WeatherForcast from './WeatherForcast.jsx'
 import './weather.css';
 
 export default function Weather(){
@@ -60,6 +61,7 @@ export default function Weather(){
                 {/* send the function as a prop to child component */}
                 <Search onSearch={fetchData} />
                 <WeatherInfo data={weatherData}/>
+                <WeatherForcast size={20}/>
         </div>
         <WeatherBackground code={weatherData?.icon}/>
         </div>
