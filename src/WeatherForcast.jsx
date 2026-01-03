@@ -28,8 +28,7 @@ export default function WeatherForcast(props) {
 
   if (forcastLoaded) {
     return (
-      <div className="weatherForcast mx-3">
-        <p className="px-2">Forecast For The Next Five Days</p>
+      <div className="weatherForcast my-5">
         <div className="row">
           {forcastData.map((dailyforcast, index)=> {
             if(index < 5){

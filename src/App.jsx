@@ -10,7 +10,7 @@ function App() {
 
     <div className="App">
      
-      <div className="container rounded col-8 ">
+      <div className="container rounded col-12 col-md-6">
       
       <Weather/>
 
@@ -29,4 +29,4 @@ function App() {
   )
 }
 
-export default App
+export default App;

@@ -8,26 +8,26 @@ const WeatherInfo = ({ data }) => {
   }
 
   return (
-    <div className="container">
+    <div className="container ">
       {/* City name */} 
       <div className="row">
         <div className="col-12">
-          <p className="fs-1 fw-bold m-2">{data.city}</p>
+          <p className="fs-5 fw-bold m-2">{data.city}</p>
         </div>
       </div>
 
       {/* Weather main row */}
-      <div className="row align-items-center mt-2">
-        <div className="col-4 d-flex justify-content-center">
+      <div className=" fs-6 row align-items-center mt-2">
+        <div className="col-3 d-flex justify-content-center">
           <WeatherIcon code={data.icon} size = {50} alt={data.description} />
         </div>
 
-        <div className="col-4 d-flex justify-content-center">
+        <div className="col-3 d-flex justify-content-center">
           <WeatherTemperature celsius={data.temp} />
         </div>
 
-        <div className="col-4">
-          <ul className="list-unstyled m-0">
+        <div className="col-6">
+          <ul className="list-unstyled m-0 text-end">
             <li>
               {data.day} {data.hour}:{data.minutes}
             </li>

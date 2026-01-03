@@ -20,8 +20,8 @@ export default function Search({onSearch}){
     
     return(
         <form className ="d-flex justify-content-around" onSubmit={handleSubmit}>
-                <input type="search" onChange={getCity} placeholder="Enter a city..." className = "col-9 p-1 rounded " />
-                <input type="submit" value="Search" className = "btn btn-primary col-2"/>
+                <input type="search" onChange={getCity} placeholder="Enter a city..." className = "col-8 p-1 rounded " />
+                <input type="submit" value="Search" className = "btn btn-primary col-3 fs-6"/>
         </form>
     )
 }
