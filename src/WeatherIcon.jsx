@@ -3,7 +3,7 @@ import React from 'react'
 
 
 function WeatherIcon(props){
-  console.log(props.code)
+  
 
   const iconMapping = {
     "01d":"CLEAR_DAY", 

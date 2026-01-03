@@ -1,21 +1,52 @@
-import react from "react";
+import React, {useState, useEffect} from "react";
 import WeatherIcon from "./WeatherIcon";
-import "./WeatherForcast.css"
+import "./WeatherForcast.css";
+import ForcastDay from "./ForcastDay";
+import axios from "axios";
 
-export default function WeatherForcast() {
-  return (
-    <div className="weatherForcast mx-3">
-        Weather forcast
-      <div className="row">
-        <div className="col forcastDay">
-          <div className="day">Thu</div>
-          <WeatherIcon code="01d" size={20} />
-          <div className="forcastDetails">
-            <span className="forcastMax">19°</span>
-            <span className="forcastMin">10° </span>
-          </div>
+export default function WeatherForcast(props) {
+  let [forcastLoaded, setForcastLoaded] = useState(false);
+  let [forcastData, setForcastData] = useState(null);
+  
+  function load(){
+    if (!props.coordinates) return null;
+    let apiKey = "fboa45182d680fb13e9a481dbtf60b57";
+    let lon = props.coordinates.lon;
+    let lat = props.coordinates.lat;
+    const apiURL = `https://api.shecodes.io/weather/v1/forecast?lon=${lon}&lat=${lat}&key=${apiKey}`;
+    axios.get(apiURL).then(handleResponse);
+  }
+  
+  useEffect(()=>{
+    setForcastLoaded(false);
+  }, [props.coordinates])
+
+  function handleResponse(response) {
+    setForcastLoaded(true);
+    setForcastData(response.data.daily);
+  }
+
+  if (forcastLoaded) {
+    return (
+      <div className="weatherForcast mx-3">
+        <p className="px-2">Forecast For The Next Five Days</p>
+        <div className="row">
+          {forcastData.map((dailyforcast, index)=> {
+            if(index < 5){
+              return(
+              <div className="col forcastDay" key={index}>
+                <ForcastDay data={dailyforcast}/>
+              </div>
+            )
+            }else{
+              return null;
+            } 
+          })}
         </div>
       </div>
-    </div>
-  );
+    );
+  } else {
+    load();
+    return null;
+  }
 }
